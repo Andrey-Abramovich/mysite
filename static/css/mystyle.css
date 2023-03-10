@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container_user {
+    /*background-color: #2b542c;*/
+
+
+}
+.container_user h1 {
+    color: #1b1b1b;
+    z-index: 1;
+}
+
+#user_btn {
+    z-index: 5;
+
+}
+
+.cont_bg {
+    background-image: url(../images/bg_002.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    /*position: fixed;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*z-index: 0;*/
+}
+
+._cbutton {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.button_div {
+    display: inline-block;
+    border-radius: 15px;
+    border: 2px solid blueviolet;
+    padding: 5px 25px;
+    /*margin-top: 40vh;*/
+    cursor: pointer;
+}
+
+.button_txt {
+    font-family: Arial;
+    font-size: 40px;
+    font-weight: normal;
+}
+
+.button_div:hover {
+    background: silver;
+    color: #c7254e;
+}
+
+.logout_h1 {
+    color: #1b1b1b;
+}
+
+#google{
+    color: black;
+}
