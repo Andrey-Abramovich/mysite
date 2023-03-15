@@ -23,14 +23,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-!b+bd0)7xyxez(v*($ybnh9-zc)#msjetbzn8ftv_)5h)n_)4x'
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = 'django-insecure-!b+bd0)7xyxez(v*($ybnh9-zc)#msjetbzn8ftv_)5h)n_)4x'
+# SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 # DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
-ALLOWED_HOSTS = ['yalorik.by', 'www.yalorik.by']
+ALLOWED_HOSTS = ['yalorik.by', 'www.yalorik.by', '127.0.0.1']
 
 AUTH_USER_MODEL = 'users.User'
 LOGIN_URL = 'us/'
@@ -147,12 +147,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [STATIC_DIR]
+STATICFILES_DIRS = [BASE_DIR / 'static']
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_DIR = os.path.join(BASE_DIR, 'static')
+# STATICFILES_DIRS = [STATIC_DIR]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -165,10 +171,10 @@ SOCIALACCOUNT_PROVIDERS = {
         # (``socialaccount`` app) containing the required client
         # credentials, or list them here:
         'APP': {
-            # 'client_id': '670951025092-bu40bjasrj4563bb5m49hccdu41p71ol.apps.googleusercontent.com',
-            'client_id': os.environ['GOOGLE_CLIENT_ID'],
-            # 'secret': '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',
-            'secret': os.environ['GOOGLE_SECRET'],
+            'client_id': '670951025092-bu40bjasrj4563bb5m49hccdu41p71ol.apps.googleusercontent.com',
+            # 'client_id': os.environ['GOOGLE_CLIENT_ID'],
+            'secret': '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',
+            # 'secret': os.environ['GOOGLE_SECRET'],
             'key': ''
         }
     }
