@@ -8,6 +8,7 @@
             <li>name: {{ user.first_name }}</li>
             <li>surname: {{ user.last_name }}</li>
 {#            <li>email: {{ user.email }}</li>#}
+
         </ul>
     </div>
 </div>
@@ -20,5 +21,17 @@
     {% else %}
         <p>Ожидайте, скоро Вы получите доступ к видеоматериалам</p>
     {% endif %}
+    </div>
+
+    <div class="container">
+    <p> category
+
+        {% for cat in categories %}
+            <form action="{% url 'lessons' category_slug=cat.slug %}" target="_blank">
+            <button class="btn-lg">{{ cat.name }}</button>
+            </form>
+        {% endfor %}
+
+    </p>
     </div>
 {% endblock %}

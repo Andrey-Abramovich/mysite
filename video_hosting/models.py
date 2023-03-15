@@ -1,5 +1,8 @@
+from django.contrib.auth import get_user_model
 from django.core.validators import FileExtensionValidator
 from django.db import models
+
+User = get_user_model()
 
 
 class Video(models.Model):
@@ -12,13 +15,26 @@ class Video(models.Model):
         validators=[FileExtensionValidator(allowed_extensions=['mp4'])]
     )
     create_at = models.DateTimeField(auto_now_add=True)
+    lesson = models.ForeignKey('Lesson', db_index=True, on_delete=models.PROTECT, related_name='lesson', null=True)
 
     def __str__(self):
         return self.title
 
 
-# class Category(models.Model):
-#     name = models.CharField(max_length=100, db_index=True)
-#
-#     def __str__(self):
-#         return self.name
+class Category(models.Model):
+    name = models.CharField(max_length=100, db_index=True)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True)
+    persons = models.ManyToManyField(User, db_index=True, related_name='persons')
+
+    def __str__(self):
+        return self.name
+
+
+class Lesson(models.Model):
+    name = models.CharField(max_length=100, db_index=True)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True)
+    cat = models.ForeignKey(Category, db_index=True, null=True, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.name
+

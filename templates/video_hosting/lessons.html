@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    <div class="container">
+    <p>Category: </p>
+        {% for c in cat %}
+            <p>
+            <form action="{% url 'video-lessons' lesson_slug=c.slug %}" target="_blank">
+            <button class="btn-lg">{{ c.name }}</button>
+            </form>
+            </p>
+        {% endfor %}
+    </div>
+{% endblock %}

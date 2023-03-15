@@ -1,9 +1,11 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.http import StreamingHttpResponse
 from django.shortcuts import render, get_object_or_404
 
-from users.models import User
-from .models import Video
+User = get_user_model()
+# from users.models import User
+from .models import Video, Category, Lesson
 from .services import open_file
 
 
@@ -30,4 +32,24 @@ def get_streaming_video(request, video_slug):
     response['Cache-Control'] = 'no-cache'
     response['Content-Range'] = content_range
     return response
+
+
+def get_list_lessons(request, category_slug):
+    cat = Lesson.objects.filter(cat__slug=category_slug)
+    # Article.objects.filter(reporter__in=Reporter.objects.filter(first_name='John')).distinct()
+    print(cat)
+    template_name = 'video_hosting/lessons.html'
+    context = {
+        'cat': cat
+    }
+    return render(request, template_name, context=context)
+
+
+def get_video_lessons(request, lesson_slug):
+    lessons = Video.objects.filter(lesson__slug=lesson_slug)
+    context = {
+        'lessons': lessons
+    }
+    template_name = 'video_hosting/home.html'
+    return render(request, template_name, context=context)
 
