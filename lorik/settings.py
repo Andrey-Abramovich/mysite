@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
+from environ import *
 
 
 from django.urls import reverse_lazy
@@ -24,8 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-!b+bd0)7xyxez(v*($ybnh9-zc)#msjetbzn8ftv_)5h)n_)4x'
-# SECRET_KEY = os.environ['SECRET_KEY']
+# SECRET_KEY = 'django-insecure-!b+bd0)7xyxez(v*($ybnh9-zc)#msjetbzn8ftv_)5h)n_)4x'
+SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -169,10 +170,10 @@ SOCIALACCOUNT_PROVIDERS = {
         # (``socialaccount`` app) containing the required client
         # credentials, or list them here:
         'APP': {
-            'client_id': '***',
-            # 'client_id': os.environ['GOOGLE_CLIENT_ID'],
-            'secret': '***',
-            # 'secret': os.environ['GOOGLE_SECRET'],
+            # 'client_id': '***',
+            'client_id': GOOGLE_CLIENT_ID,
+            # 'secret': '***',
+            'secret': GOOGLE_SECRET,
             'key': ''
         }
     }
@@ -188,7 +189,7 @@ SOCIALACCOUNT_FORMS = {
 EMAIL_HOST = 'smtp.yandex.ru'  # адрес сервера Яндекс-почты для всех один и тот же
 EMAIL_PORT = 465  # порт smtp сервера тоже одинаковый
 EMAIL_HOST_USER = 'andrey-abtest'  # ваше имя пользователя, например, если ваша почта user@yandex.ru, то сюда надо писать user, иными словами, это всё то что идёт до собаки
-EMAIL_HOST_PASSWORD = '***' # пароль от почты
+EMAIL_HOST_PASSWORD = YANDEX_PASSWORD # пароль от почты
 EMAIL_USE_SSL = True  # Яндекс использует ssl, подробнее о том, что это, почитайте в дополнительных источниках, но включать его здесь обязательно
 SERVER_EMAIL = 'andrey-abtest@yandex.ru'
 DEFAULT_FROM_EMAIL = 'andrey-abtest@yandex.ru'  # здесь указываем уже свою ПОЛНУЮ почту, с которой будут отправляться письма
