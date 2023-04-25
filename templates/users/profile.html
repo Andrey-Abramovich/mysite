@@ -1,37 +1,49 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Личный кабинет{% endblock %}
 
 {% block content %}
     <div class="container">
-    <div class="container_user">
-        <ul>
-            <li>user: {{ user.username }}</li>
-            <li>name: {{ user.first_name }}</li>
-            <li>surname: {{ user.last_name }}</li>
-{#            <li>email: {{ user.email }}</li>#}
-
-        </ul>
+        <div class="container_user">
+            <p>
+                Добро пожаловать {{ user.first_name }} <!--<img src='{{ user.socialaccount_set.all.0.get_avatar_url }}'>-->
+            </p>
+        </div>
     </div>
-</div>
-{#    <a href="{% url 'home' %}">Home</a>#}
+    {% if user.is_staff %}
+            <div class="container">
+                <form action="{% url 'messages' %}" target="_blank">
+                    <button class="button_div">Мои сообщения</button>
+                </form>
+            </div>
+        {% endif %}
     <div class="container">
     {% if perms.video_hosting.view_video %}
-        <form action="{% url 'home' %}" target="_blank">
-                <button class="button_div">Просмотр уроков</button>
-            </form>
+
+    <p> Курсы, доступные для Вас:
+
+        {% for cat in categories %}
+            <div class="post-masonry col-md-4 col-sm-6">
+                <div class="post-thumb">
+                    <a href="{% url 'lessons' category_slug=cat.slug %}"><img src="{% static '{{ cat.image }}' %}" alt=""></a>
+                    <form action="{% url 'lessons' category_slug=cat.slug %}" target="_blank">
+                        <button class="button_div">{{ cat.name }}</button>
+                    </form>
+                </div>
+            </div>
+
+        {% endfor %}
+            {% if ears %}
+                <div class="container">
+                    <form action="{% url 'message' %}" target="_blank">
+                        <button class="button_div">Сообщение доктору</button>
+                    </form>
+                </div>
+            {% endif %}
+    </p>
     {% else %}
         <p>Ожидайте, скоро Вы получите доступ к видеоматериалам</p>
     {% endif %}
     </div>
 
-    <div class="container">
-    <p> category
-
-        {% for cat in categories %}
-            <form action="{% url 'lessons' category_slug=cat.slug %}" target="_blank">
-            <button class="btn-lg">{{ cat.name }}</button>
-            </form>
-        {% endfor %}
-
-    </p>
-    </div>
 {% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="main-posts">
+    <div class="container">
+        <div class="blog-masonry masonry-true">
+            <div class="post-masonry col-md-12 col-md-12">  # при смене числа колонок например на 3 или 4 изменяется только размер изображения
+                <div class="post-thumb">
+
+                    <div class="owl-carousel owl-theme owl-loaded">
+                        <div class="owl-stage-outer">
+                            <div class="owl-stage">
+                                <div class="owl-item"><img src="{% static 'images/sertificat/1.jpg' %}"></div>
+                                <div class="owl-item"><img src="{% static 'images/sertificat/2.jpg' %}"></div>
+                                <div class="owl-item"><img src="{% static 'images/sertificat/3.jpg' %}"></div>
+                                <div class="owl-item"><img src="{% static 'images/sertificat/4.jpg' %}"></div>
+                                <div class="owl-item"><img src="{% static 'images/sertificat/5.jpg' %}"></div>
+                                <div class="owl-item"><img src="{% static 'images/sertificat/6.jpg' %}"></div>
+                                <div class="owl-item"><img src="{% static 'images/sertificat/7.jpg' %}"></div>
+                                <div class="owl-item"><img src="{% static 'images/sertificat/8.jpg' %}"></div>
+                                <div class="owl-item"><img src="{% static 'images/sertificat/9.jpg' %}"></div>
+                                <div class="owl-item"><img src="{% static 'images/sertificat/10.jpg' %}"></div>
+                                <div class="owl-item"><img src="{% static 'images/sertificat/11.jpg' %}"></div>
+                                <div class="owl-item"><img src="{% static 'images/sertificat/12.jpg' %}"></div>
+                                <div class="owl-item"><img src="{% static 'images/sertificat/13.jpg' %}"></div>
+                                <div class="owl-item"><img src="{% static 'images/sertificat/14.jpg' %}"></div>
+                                <div class="owl-item"><img src="{% static 'images/sertificat/15.jpg' %}"></div>
+                                <div class="owl-item"><img src="{% static 'images/sertificat/16.jpg' %}"></div>
+                                <div class="owl-item"><img src="{% static 'images/sertificat/17.jpg' %}"></div>
+                                <div class="owl-item"><img src="{% static 'images/sertificat/18.jpg' %}"></div>
+                                <div class="owl-item"><img src="{% static 'images/sertificat/19.jpg' %}"></div>
+                                <div class="owl-item"><img src="{% static 'images/sertificat/20.jpg' %}"></div>
+                                <div class="owl-item"><img src="{% static 'images/sertificat/21.jpg' %}"></div>
+                            </div>
+                        </div>
+                        <div class="owl-nav">
+                            <div class="owl-prev">prev</div>
+                            <div class="owl-next">next</div>
+                        </div>
+                        <div class="owl-dots">
+                            <div class="owl-dot active"><span></span></div>
+                            <div class="owl-dot"><span></span></div>
+                            <div class="owl-dot"><span></span></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

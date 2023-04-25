@@ -1,10 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 {% load socialaccount %}
 {% block content %}
 <div class="main-posts">
   <div class="container">
     <div class="row">
       <div class="blog-masonry masonry-true">
+      {% if is_person %}
 
         {% for video in lessons %}
           <div class="post-masonry col-md-4 col-sm-6">
@@ -24,16 +25,13 @@
             </div>
           </div> <!-- /.post-masonry -->
         {% endfor %}
+          {% else %}
+            <p>Вам сюда нельзя!</p>
+            <p>Для доступа обратитесь к администратору сайта.</p>
+      {% endif %}
       </div>
     </div>
   </div>
 </div>
-    <div class="container_user" >
-          <p>
-        {% get_social_accounts user as accounts %}
-              <h2 id="google">{{ accounts.google}}</h2>
-              <h1 color="black" z-index="1">User: {{ user.username }}{{ user.first_name }}</h1>
-          </p>
 
-      </div>
 {% endblock content %}
