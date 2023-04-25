@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+
 from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -33,7 +34,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['yalorik.by', 'www.yalorik.by', '127.0.0.1']
 
 AUTH_USER_MODEL = 'users.User'
-LOGIN_URL = 'us/'
+# LOGIN_URL = 'us/'
+LOGIN_URL = reverse_lazy('test')
 LOGIN_REDIRECT_URL = '/us/profile/'
 LOGOUT_REDIRECT_URL = reverse_lazy('test')
 
@@ -156,10 +158,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-
-
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -171,17 +169,26 @@ SOCIALACCOUNT_PROVIDERS = {
         # (``socialaccount`` app) containing the required client
         # credentials, or list them here:
         'APP': {
-            'client_id': '670951025092-bu40bjasrj4563bb5m49hccdu41p71ol.apps.googleusercontent.com',
+            'client_id': '***',
             # 'client_id': os.environ['GOOGLE_CLIENT_ID'],
-            'secret': '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',
+            'secret': '***',
             # 'secret': os.environ['GOOGLE_SECRET'],
             'key': ''
         }
     }
 }
 
-SOCIALACCOUNT_AUTO_SIGNUP = False
+SOCIALACCOUNT_AUTO_SIGNUP = True
 
 SOCIALACCOUNT_FORMS = {
-    'signup': 'users.forms.MyCustomSocialSignupForm',
+    'signup': 'users.forms.SignupForm',
 }
+
+#EMAIL
+EMAIL_HOST = 'smtp.yandex.ru'  # адрес сервера Яндекс-почты для всех один и тот же
+EMAIL_PORT = 465  # порт smtp сервера тоже одинаковый
+EMAIL_HOST_USER = 'andrey-abtest'  # ваше имя пользователя, например, если ваша почта user@yandex.ru, то сюда надо писать user, иными словами, это всё то что идёт до собаки
+EMAIL_HOST_PASSWORD = '***' # пароль от почты
+EMAIL_USE_SSL = True  # Яндекс использует ssl, подробнее о том, что это, почитайте в дополнительных источниках, но включать его здесь обязательно
+SERVER_EMAIL = 'andrey-abtest@yandex.ru'
+DEFAULT_FROM_EMAIL = 'andrey-abtest@yandex.ru'  # здесь указываем уже свою ПОЛНУЮ почту, с которой будут отправляться письма

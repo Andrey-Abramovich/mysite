@@ -1,8 +1,22 @@
-from allauth.socialaccount.forms import SignupForm
 
+from allauth.socialaccount.forms import SignupForm
+from django.contrib.auth import get_user_model
+from django.forms import ModelForm
+
+from users.models import Respond
+
+User = get_user_model()
+
+
+class SendRespondForm(ModelForm):
+    class Meta:
+        model = Respond
+        fields = ['upload', 'text']
 
 class MyCustomSocialSignupForm(SignupForm):
-
+    class Meta:
+        model = User
+        fields = ['username', ]
     def save(self, request):
 
         # Ensure you call the parent class's save.
@@ -13,3 +27,4 @@ class MyCustomSocialSignupForm(SignupForm):
 
         # You must return the original result.
         return user
+

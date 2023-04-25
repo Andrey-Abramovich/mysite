@@ -1,16 +1,21 @@
-{% extends 'base.html' %}
-
+{% extends 'base/base.html' %}
+{% block title %}Уроки{% endblock %}
 {% block content %}
 
 
     <div class="container">
-    <p>Category: </p>
+    {% if is_person %}
+    <p id="p">Занятия:</p>
         {% for c in cat %}
             <p>
-            <form action="{% url 'video-lessons' lesson_slug=c.slug %}" target="_blank">
-            <button class="btn-lg">{{ c.name }}</button>
-            </form>
+                <form action="{% url 'video-lessons' lesson_slug=c.slug %}" target="_blank">
+                    <button class="button_div">{{ c.name }}</button>
+                </form>
             </p>
         {% endfor %}
+        {% else %}
+        <p id="p">Вам сюда нельзя!</p>
+        <p id="p">Для доступа обратитесь к администратору сайта.</p>
+    {% endif %}
     </div>
 {% endblock %}

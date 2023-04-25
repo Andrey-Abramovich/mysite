@@ -1,0 +1,78 @@
+{% extends 'base/base.html' %}
+{% load socialaccount %}
+{% block title %}Сообщения от пользователей{% endblock %}
+{% block content %}
+    <div class="main-posts">
+  <div class="container">
+    <div class="row">
+      <div class="blog-masonry masonry-true">
+        {% if user.is_staff %}
+
+        {% for respond in page_obj %}
+          <div class="post-masonry col-md-4 col-sm-6">
+            <div class="post-thumb">
+            <h4>{{ respond.respauthor }}</h4>
+                {% if respond.upload %}
+              <img src="{{ respond.upload.url }}" alt="">
+                {% endif %}
+            <p>{{ respond.text }}</p>
+            <span class="date">{{ respond.dateCreation }}</span>
+{#              <div class="title-over">#}
+{#                <h4>{{ video.title }}</h4>#}
+{#              </div>#}
+{#              <div class="post-hover text-center">#}
+{#                <div class="inside">#}
+{#                  <i class="fa fa-plus"></i>#}
+{##}
+{##}
+{#                  <p>{{ video.description|slice:":100" }}</p>#}
+{#                </div>#}
+{#              </div>#}
+            </div>
+          </div> <!-- /.post-masonry -->
+        {% endfor %}
+        {% endif %}
+{#          {% else %}#}
+{#            <p>Вам сюда нельзя!</p>#}
+{#            <p>Для доступа обратитесь к администратору сайта.</p>#}
+{#      {% endif %}#}
+      </div>
+    </div>
+  </div>
+
+{#    {% for respond in page_obj %}#}
+{#        <div class="container">#}
+{#        <h2>{{ post.title }}</h2>#}
+{#        <p>{{ respond.respauthor }}</p>#}
+{#        <p>Категория: {{ post.roles }}</p>#}
+{#        <p>{{ respond.text }}</p>#}
+{#        <p>{% if respond.upload %}#}
+{#                <img src="{{ respond.upload.url }}">#}
+{#            {% endif %}</p>#}
+{#        <p>Дата публикации: {{ respond.dateCreation }}</p>#}
+{#        </div>#}
+{#        <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>#}
+{#        <hr>#}
+{#    {% endfor %}#}
+
+{# Пагинация страницы #}
+
+    <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+    </div>
+</div>
+{% endblock %}
