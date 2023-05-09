@@ -6,7 +6,7 @@
 
       <div class="row">
         <div class="col-md-6 col-md-6">
-<!--          <img class="single-video" src="{{ video.image.url }}" alt="">-->
+          <img id="pic" class="single-video" src="{{ video.image.url }}" alt="">
           <video
               id="my-video"
               class="video-js"
@@ -28,4 +28,18 @@
       </div>
     </div>
   </div>
+
+  <script>
+        const noVid = document.getElementById('my-video');
+        noVid.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+  </script>
+
+  <script>
+        const noPict = document.getElementById('pic');
+        noPict.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+  </script>
 {% endblock content %}
